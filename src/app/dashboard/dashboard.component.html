@@ -1,0 +1,157 @@
+<ngb-tabset [justify]="'justified'">
+    <ngb-tab title="Real Time">
+        <ng-template ngbTabContent>
+            <div class="table-container">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">ID Blok</th>
+                            <th scope="col">Tanggal</th>
+                            <th scope="col">Waktu</th>
+                            <th scope="col">Va</th>
+                            <th scope="col">Vb</th>
+                            <th scope="col">Vc</th>
+                            <th scope="col">Vab</th>
+                            <th scope="col">Vbc</th>
+                            <th scope="col">Vca</th>
+                            <th scope="col">Ia</th>
+                            <th scope="col">Ib</th>
+                            <th scope="col">Ic</th>
+                            <th scope="col">Pa</th>
+                            <th scope="col">Pb</th>
+                            <th scope="col">Pc</th>
+                            <th scope="col">Pt</th>
+                            <th scope="col">Pfa</th>
+                            <th scope="col">Pfb</th>
+                            <th scope="col">Pfc</th>
+                            <th scope="col">Ep</th>
+                            <th scope="col">Eq</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of data; let i = index">
+                            <td>{{ i + 1 }}</td>
+                            <td>{{ item.blok_id }}</td>
+                            <td>{{ item.tanggal }}</td>
+                            <td>{{ item.waktu }}</td>
+                            <td>{{ item.va }}</td>
+                            <td>{{ item.vb }}</td>
+                            <td>{{ item.vc }}</td>
+                            <td>{{ item.vab }}</td>
+                            <td>{{ item.vbc }}</td>
+                            <td>{{ item.vca }}</td>
+                            <td>{{ item.ia }}</td>
+                            <td>{{ item.ib }}</td>
+                            <td>{{ item.ic }}</td>
+                            <td>{{ item.pa }}</td>
+                            <td>{{ item.pb }}</td>
+                            <td>{{ item.pc }}</td>
+                            <td>{{ item.pt }}</td>
+                            <td>{{ item.pfa }}</td>
+                            <td>{{ item.pfb }}</td>
+                            <td>{{ item.pfc }}</td>
+                            <td>{{ item.ep }}</td>
+                            <td>{{ item.eq }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </ng-template>
+    </ngb-tab>
+    <ngb-tab title="History">
+        <ng-template ngbTabContent>
+            <p class="title-desc"></p>
+            <form class="formFilter">
+                <div class="form-row">
+                    <div class="col" style="padding:5px 10px">
+                        <select
+                            name="blockSelect"
+                            [(ngModel)]="selectedBlock"
+                            (change)="loadHistory(1)"
+                        >
+                            <option
+                                *ngFor="let ibl of block"
+                                [(value)]="ibl.id"
+                                >{{ ibl.nama_blok }}</option
+                            >
+                        </select>
+                    </div>
+                </div>
+            </form>
+            <div class="table-container">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">ID Blok</th>
+                            <th scope="col">Tanggal</th>
+                            <th scope="col">Waktu</th>
+                            <th scope="col">Va</th>
+                            <th scope="col">Vb</th>
+                            <th scope="col">Vc</th>
+                            <th scope="col">Vab</th>
+                            <th scope="col">Vbc</th>
+                            <th scope="col">Vca</th>
+                            <th scope="col">Ia</th>
+                            <th scope="col">Ib</th>
+                            <th scope="col">Ic</th>
+                            <th scope="col">Pa</th>
+                            <th scope="col">Pb</th>
+                            <th scope="col">Pc</th>
+                            <th scope="col">Pt</th>
+                            <th scope="col">Pfa</th>
+                            <th scope="col">Pfb</th>
+                            <th scope="col">Pfc</th>
+                            <th scope="col">Ep</th>
+                            <th scope="col">Eq</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of listHistory; let i = index">
+                            <td>{{ i + 1 }}</td>
+                            <td>{{ item.blok_id }}</td>
+                            <td>{{ item.tanggal }}</td>
+                            <td>{{ item.waktu }}</td>
+                            <td>{{ item.va }}</td>
+                            <td>{{ item.vb }}</td>
+                            <td>{{ item.vc }}</td>
+                            <td>{{ item.vab }}</td>
+                            <td>{{ item.vbc }}</td>
+                            <td>{{ item.vca }}</td>
+                            <td>{{ item.ia }}</td>
+                            <td>{{ item.ib }}</td>
+                            <td>{{ item.ic }}</td>
+                            <td>{{ item.pa }}</td>
+                            <td>{{ item.pb }}</td>
+                            <td>{{ item.pc }}</td>
+                            <td>{{ item.pt }}</td>
+                            <td>{{ item.pfa }}</td>
+                            <td>{{ item.pfb }}</td>
+                            <td>{{ item.pfc }}</td>
+                            <td>{{ item.ep }}</td>
+                            <td>{{ item.eq }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <ngb-pagination
+                [collectionSize]="totalItems"
+                [pageSize]="itemsPerPage"
+                [(page)]="page"
+                [maxSize]="5"
+                size="sm"
+                [rotate]="true"
+                [ellipses]="true"
+                [boundaryLinks]="true"
+                (pageChange)="loadData($event)"
+                aria-label="Default pagination"
+            ></ngb-pagination>
+        </ng-template>
+    </ngb-tab>
+    <ngb-tab title="Info">
+        <ng-template ngbTabContent>
+            <button class="btn btn-primary" (click)="logout()">logout</button>
+        </ng-template>
+    </ngb-tab>
+</ngb-tabset>
